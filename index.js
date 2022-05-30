@@ -4,7 +4,9 @@ for (var i = 0; i < document.getElementsByClassName("drum").length; i++) {
   document
     .getElementsByClassName("drum")
     [i].addEventListener("click", function () {
-      switch (this.innerHTML) {
+      var btnPressed = this.innerHTML;
+
+      switch (btnPressed) {
         //This tells which buttom is clicked
         case "w":
           var tom1 = new Audio("sounds/tom-1.mp3");
@@ -35,6 +37,7 @@ for (var i = 0; i < document.getElementsByClassName("drum").length; i++) {
           snare.play();
           break;
       }
+      btAnimation(btnPressed);
     });
 }
 
@@ -76,4 +79,17 @@ document.addEventListener("keydown", function (Keyboardevent) {
       snare.play();
       break;
   }
+  // this.classList.add("press");
+  // setTimeout(rmClass,100){
+  //   this.classList.remove("press");
+  // }
+  btAnimation(keyPressed);
 });
+
+function btAnimation(currentKey) {
+  var activeB = document.querySelector("." + currentKey);
+  activeB.classList.add("press");
+  setTimeout(function () {
+    activeB.classList.remove("press");
+  }, 100);
+}
